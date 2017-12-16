@@ -85,6 +85,14 @@ public class LessonNine {
 		
 		System.out.println(Arrays.toString(numberCopy));
 		
+		int []moreNumber = new int [100];
+		Arrays.fill(moreNumber, 2);
+		
+		char[][] boardGame = new char [10][10];
+		
+		for (char[] row : boardGame) {
+			Arrays.fill(row, '*');
+		}
  	}
 	
 	
