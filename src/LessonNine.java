@@ -93,6 +93,22 @@ public class LessonNine {
 		for (char[] row : boardGame) {
 			Arrays.fill(row, '*');
 		}
+		
+		int[] numToSort =new int[10];
+		for(int i = 0; i < 10; i++) {
+			
+			numToSort[i] = (int)(Math.random() * 100 );
+		}
+		
+		System.out.println(Arrays.toString(numToSort));
+		
+		Arrays.sort(numToSort);
+		
+		System.out.println(Arrays.toString(numToSort));
+		
+		int whereIs50 = Arrays.binarySearch(numToSort, 50);
+		
+		System.out.println(whereIs50);
  	}
 	
 	
