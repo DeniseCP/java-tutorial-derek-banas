@@ -87,6 +87,72 @@ public class MonsterTwo {
 		}
 	}
 	
+	public void moveMonster(MonsterTwo[] monster, int arrayItemIndex) {
+		boolean isSpaceOpen = true;
+		
+		int maxXBoardSpace = battleBoard.length - 1;
+		int maxYBoardSpace = battleBoard[0].length - 1;
+		
+		while(isSpaceOpen) {
+			
+			int randMoveDirection = (int)(Math.random() * 4);
+			int randMoveDistance = (int)(Math.random() * (this.getMovement() + 1));
+			
+			System.out.println(randMoveDistance + " "+ randMoveDirection);
+			
+			battleBoard[this.yPosition][this.xPosition] = '*';
+			
+			if(randMoveDirection == 0) {
+				if((this.yPosition - randMoveDirection) < 0) {
+					this.yPosition = 0;
+				}else {
+					this.yPosition -= randMoveDirection;
+				}
+			}else if(randMoveDirection ==1 ) {
+				if((this.xPosition + randMoveDistance) > maxXBoardSpace) {
+					this.xPosition = maxXBoardSpace;
+				}else {
+					this.xPosition += randMoveDistance;
+				}
+			}else if(randMoveDirection == 2 ) {
+				if((this.yPosition + randMoveDistance) > maxYBoardSpace) {
+					this.yPosition = maxYBoardSpace;
+				}else {
+					this.yPosition += randMoveDistance;
+				}
+			}else {
+				if((this.xPosition - randMoveDistance) < 0) {
+					this.yPosition = 0;
+				}else {
+					this.yPosition -= randMoveDistance;
+				}
+			}
+			
+			for (int i = 0; i < monster.length; i++) {
+				
+				if( i == arrayItemIndex ) {
+					continue;
+				}
+				
+				if(onMySpace(monster, i, arrayItemIndex)) {
+					isSpaceOpen = true;
+					break;
+				}else {
+					isSpaceOpen = false;
+				}
+			}
+		}//end of while loop
+		battleBoard[this.yPosition][this.xPosition]= this.nameChar1;
+	}// end of moveMonster
+	
+	public boolean onMySpace(MonsterTwo[] monster, int indexToCkcOne, int indexToCkcTwo) {
+		if ((monster[indexToCkcOne].xPosition) == (monster[indexToCkcTwo].xPosition) &&
+				(monster[indexToCkcOne].yPosition) == (monster[indexToCkcTwo].yPosition)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 	public MonsterTwo(int newHealth, int newAttack, int newMovement, String name) {
 		this.health = newHealth;
 		this.attack = newAttack;
